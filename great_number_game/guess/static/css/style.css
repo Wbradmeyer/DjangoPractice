@@ -1,0 +1,40 @@
+body {
+    margin: auto 0px;
+    padding: 0;
+    text-align: center;
+    background-color: lightcyan;
+}
+
+h1 {
+    color: brown;
+}
+
+.message {
+    margin: auto;
+    color: white;
+    width: 150px;
+    height: 30px;
+    padding: 25px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+input {
+    margin: 10px 0px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#guess {
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+}
+
+#reset {
+    background-color: yellow;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+}

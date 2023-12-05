@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking of a number between 1 and 100.</p>
+    <p>Take a guess!</p>
+    <!-- <p>The secret number is: {{ request.session.secret_number }}</p> -->
+
+    {% if request.session.message %}
+        {% if request.session.correct %}
+            <p class="message" style="background-color: green;">{{ request.session.message }}</p>
+        {% elif request.session.count == 0 %}
+            <p class="message" style="background-color: red;">{{ request.session.message }}</p>
+            <p>It was {{ request.session.secret_number }}</p>
+        {% else %}
+            <p class="message" style="background-color: red;">{{ request.session.message }}</p>
+        {% endif %}       
+    {% endif %}
+
+    <form action="{% url 'guesses:guess' %}" method="post">
+        {% csrf_token %}
+        <input type="number" name="guess">
+        <input id="guess" type="submit" value="Guess">
+    </form>
+    <a id="reset" href="{% url 'guesses:destroy' %}">Reset Game</a>
+    <p>Guesses left: {{ request.session.count }}</p>
+</body>
+</html>
