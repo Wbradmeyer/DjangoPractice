@@ -1,0 +1,4 @@
+User.objects.create() 3 times
+User.objects.all()
+User.objects.last()
+User.objects.first()
