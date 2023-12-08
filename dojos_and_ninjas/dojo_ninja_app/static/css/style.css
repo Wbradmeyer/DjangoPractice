@@ -1,0 +1,25 @@
+body {
+    margin: auto;
+    padding: 0px
+}
+
+#container {
+    width: 800px;
+    border: 1px solid red;
+    text-align: center;
+}
+
+#top {
+    height: 200px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-around;
+}
+
+p {
+    margin: 10px;
+}
+
+#bottom {
+    border: 1px solid blue;
+}
