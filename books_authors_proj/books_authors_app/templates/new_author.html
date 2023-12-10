@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add an Author</title>
+</head>
+<body>
+    <div style="display: flex;">
+        <div>
+            <h1>Add an Author</h1>
+            <form action="{% url 'books_authors:new_author' %}" method="post">
+                {% csrf_token %}
+                <p>
+                    <label>First Name</label>
+                    <input type="text" name="first_name">
+                </p>
+                <p>
+                    <label>Last Name</label>
+                    <input type="text" name="last_name">
+                </p>
+                <p>
+                    <label>Notes</label>
+                    <input type="text" name="notes">
+                </p>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                {% for author in all_authors %}
+                    <tr>
+                        <td>{{ author.id }}</td>
+                        <td>{{ author.first_name }} {{ author.last_name }}</td>
+                        <td><a href="{% url 'books_authors:display_author' author_id=author.id %}">View</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
