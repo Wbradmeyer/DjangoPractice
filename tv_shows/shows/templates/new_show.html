@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <h1>Add a New Show</h1>
+            <a href="{% url 'shows:dashboard' %}">Go Back</a>
+        </div>
+        <div>
+            <form action="{% url 'shows:create_show' %}" method="post">
+                {% csrf_token %}
+                <label>Title
+                    <input type="text" name="title">
+                </label>
+                <div>
+                    <label>Network
+                        <input type="text" name="network">
+                    </label>
+                    <label>Release Date
+                        <input type="date" name="release">
+                    </label>
+                </div>
+                <label>Description
+                    <textarea name="desc" cols="30" rows="10"></textarea>
+                </label>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <h1>Edit Show</h1>
+            <a href="{% url 'shows:dashboard' %}">Go Back</a>
+        </div>
+        <div>
+            <form action="{% url 'shows:update' show_id=show.id %}" method="post">
+                {% csrf_token %}
+                <label>Title
+                    <input type="text" name="title" value="{{ show.title }}">
+                </label>
+                <div>
+                    <label>Network
+                        <input type="text" name="network" value="{{ show.network }}">
+                    </label>
+                    <label>Release Date
+                        <input type="date" name="release" value="{{ show.release }}">
+                    </label>
+                </div>
+                <label>Description
+                    <textarea name="desc" cols="30" rows="10">{{ show.desc }}</textarea>
+                </label>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

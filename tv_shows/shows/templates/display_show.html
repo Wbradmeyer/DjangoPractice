@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <h1>TV Show {{ show.id }}</h1>
+            <a href="{% url 'shows:dashboard' %}">Go Back</a>
+        </div>
+        <div>
+            <p>Title: {{ show.title }}</p>
+            <p>Network: {{ show.network }}</p>
+            <p>Release Date: {{ show.release }}</p>
+            <p>Description: {{ show.desc }}</p>
+        </div>
+        <p>Last Updated: {{ show.updated_at }}</p>
+        <div>
+            <a href="{% url 'shows:edit' show_id=show.id %}">Edit</a> | 
+            <a href="{% url 'shows:delete' show_id=show.id %}">Delete</a>
+        </div>
+    </div>
+</body>
+</html>
