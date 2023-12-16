@@ -1,0 +1,21 @@
+* {
+    margin: auto 0px;
+    padding: 0px;
+    background-color: cadetblue;
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#register, #login {
+    text-align: start;
+    margin: 0px;
+}
+
+label {
+    display: block;
+    margin: 10px;
+}
