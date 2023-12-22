@@ -52,7 +52,7 @@ def success(request):
     content = {
         'user': User.objects.get(id=request.session['user_id'])
     }
-    return render(request, 'success.html', content)
+    return redirect('/wall')
 
 def logout(request):
     if 'user_id' in request.session:
