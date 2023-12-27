@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_books/book_style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav_bar">
+            <h1>Welcome, {{ user.first_name }}!</h1>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+        <hr>
+        <div id="book_main">
+            <div id="book_form">
+                {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <h2>Add a Favorite Book</h2>
+                <form action="/books/new" method="post">
+                    {% csrf_token %}
+                    <p><label>Title</label></p>
+                    <p><input type="text" name="title" class="input"></p>
+                    <p><label>Description</label></p>
+                    <p><textarea name="desc"cols="40" rows="5" class="input"></textarea></p>
+                    <input class="submit" type="submit" value="Add a Book">
+                </form>
+            </div>
+            <div>
+                <h2>All Books</h2>
+                {% for book in all_books %}
+                <div style="margin: 20px 0px;">
+                    <p><a href="/books/{{ book.id }}">{{ book.title }}</a></p>
+                    <p style="font-style: italic;">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
+                    {% if book in user.liked_books.all %}
+                        <p style="font-style: italic;">this is one of your favorites</p>
+                    {% else %}
+                        <a href="/books/{{ book.id }}/like">Add to Favorites</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

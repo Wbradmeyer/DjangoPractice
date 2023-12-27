@@ -1,0 +1,53 @@
+* {
+    margin: auto 0px;
+    padding: 0px;
+    background-color: cadetblue;
+}
+
+.wrapper {
+    width: 750px;
+    border: 1px solid black;
+}
+
+.nav_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 20px;
+}
+
+.logout {
+    text-decoration: none;
+    background-color: gold;
+    color: black;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+hr {
+    color: black;
+}
+
+#book_main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.input {
+    background-color: azure;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.submit {
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+}

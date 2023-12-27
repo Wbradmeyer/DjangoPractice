@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Book</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_books/book_style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav_bar">
+            <h1>Welcome, {{ user.first_name }}!</h1>
+            <a class="logout" href="/logout">Logout</a>
+        </div>
+        <hr>
+        <div id="book_main">
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if book.uploaded_by.id == user.id %}
+            <form action="/books/{{ book.id }}/update" method="post">
+                {% csrf_token %}
+                <p><input type="text" name="title" class="input" value="{{ book.title }}"></p>
+                <p>Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                <p>Added on: {{ book.created_on }}</p>
+                <p>Last updated on: {{ book.updated_on }}</p>
+                <p><label>Description</label></p>
+                <p><textarea name="desc"cols="40" rows="5" class="input">{{ book.desc }}</textarea></p>
+                <input class="submit" type="submit" value="Update">
+                <a href="/books/{{ book.id }}/delete">Delete</a>
+            </form>
+            {% else %}
+            <div>
+                <h2>{{ book.title }}</h2>
+                <p>Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+                <p>Added on: {{ book.created_on }}</p>
+                <p>Last updated on: {{ book.updated_on }}</p>
+                <p>Description: {{ book.desc }}</p>
+            </div>
+            {% endif %}
+            <div>
+                <h2>Users Who Like This Book:</h2>
+                <ul>
+                    {% for liker in book.users_who_like.all %}
+                        {% if liker.id == user.id %}
+                            <li>{{ liker.first_name }} {{ liker.last_name }} <a href="/books/{{ book.id }}/unlike">Un-Favorite</a></li>
+                        {% else %}
+                            <li>{{ liker.first_name }} {{ liker.last_name }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
